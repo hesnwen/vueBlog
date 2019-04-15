@@ -77,6 +77,8 @@ export default {
 <style scoped>
 #blog *{
   box-sizing: border-box;
+  max-width: 800px;
+  margin: 20px auto;
 }
 #blogadd{
   width: 90%;

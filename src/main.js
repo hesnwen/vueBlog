@@ -3,24 +3,34 @@
 import Vue from 'vue'
 import App from './App'
 import vueResource from 'vue-resource'
-// import router from './router'
-import Router from 'vue-router'
-import Blogadd from './components/Blogadd'
+import VueRouter from 'vue-router'
+import Router from './Router'
 
 Vue.config.productionTip = false
-Vue.use(vueResource)
+Vue.use(vueResource);
+Vue.use(VueRouter);
 
-const routers  = new Router({
-  routes :[
-    {path:"/",component:Blogadd},
-  ],
+Vue.directive('color',{
+  bind(el,binding,vnode){
+    el.style.color = '#' + Math.random().toString(16).slice(2,8);
+  }
+})
+Vue.directive('size',{
+  bind(el,binding,vnode){
+    if(binding.value % 2 == 0){
+      el.style = 'background-color:#fff';
+    }
+  }
+})
+const router  = new VueRouter({
+  routes : Router,
   mode:"history"
 });
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  routers,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  router:router,
 })
